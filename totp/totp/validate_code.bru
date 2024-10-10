@@ -1,0 +1,22 @@
+meta {
+  name: validate_code
+  type: http
+  seq: 4
+}
+
+post {
+  url: http://localhost:8080/validate-code
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "joseph@my.com",
+    "code": "833955"
+  }
+}

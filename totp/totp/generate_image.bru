@@ -1,0 +1,21 @@
+meta {
+  name: generate_image
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://localhost:8080/generate-image
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: image/png
+}
+
+body:json {
+  {
+    "username": "joseph@my.com"
+  }
+}

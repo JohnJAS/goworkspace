@@ -1,0 +1,21 @@
+meta {
+  name: generate_key
+  type: http
+  seq: 2
+}
+
+post {
+  url: http://localhost:8080/generate-key
+  body: json
+  auth: none
+}
+
+headers {
+  Content-Type: application/json
+}
+
+body:json {
+  {
+    "username": "joseph@my.com"
+  }
+}
