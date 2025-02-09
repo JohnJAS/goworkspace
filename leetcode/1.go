@@ -7,16 +7,13 @@ import "fmt"
 
 func twoSum(nums []int, target int) []int {
 	m := make(map[int]int)
-
-	for index, value := range nums {
-
-		if vv, exist := m[target-value]; exist {
-			return []int{vv, index}
+	for index, v := range nums {
+		if _, ok := m[target-v]; ok {
+			return []int{m[target-v], index}
 		}
-
-		m[value] = index
+		m[v] = index
 	}
-	return nil
+	return []int{}
 }
 
 func main() {
