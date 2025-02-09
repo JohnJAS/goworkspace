@@ -6,19 +6,14 @@ import (
 )
 
 func hIndex(citations []int) int {
-	sort.Slice(citations, func(i, j int) bool {
-		return citations[i] > citations[j]
-	})
-	fmt.Println(citations)
-
+	sort.Ints(citations)
 	h := 0
 	//第1篇1次，第二篇2次，第3篇3次...第h篇h次
-	for _, v := range citations {
-		if v > h {
+	for i := len(citations) - 1; i >= 0; i-- {
+		if citations[i] > h {
 			h++
 		}
 	}
-
 	return h
 }
 
