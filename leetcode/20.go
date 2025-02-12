@@ -1,29 +1,39 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 func isValid(s string) bool {
-	var stack []rune
-	pair := map[rune]rune{
+	m := map[rune]rune{
 		'}': '{',
-		')': '(',
 		']': '[',
+		')': '(',
 	}
-	for _, v := range s {
-		if v == '(' || v == '[' || v == '{' {
-			stack = append(stack, v)
+	var stack []rune
+	for _, c := range s {
+		if c == '{' || c == '[' || c == '(' {
+			//push
+			stack = append(stack, c)
 		}
-		if v == ')' || v == ']' || v == '}' {
-			if len(stack) == 0 || stack[len(stack)-1] != pair[v] {
+		if c == '}' || c == ']' || c == ')' {
+			//pop
+			if len(stack) == 0 || m[c] != stack[len(stack)-1] {
 				return false
 			}
 			stack = stack[:len(stack)-1]
 		}
 	}
-
-	return len(stack) == 0
+	if len(stack) != 0 {
+		return false
+	}
+	return true
 }
 
 func main() {
+	fmt.Println('{')
+	test := []int{1, 2, 3}
+	fmt.Println(test[:2])
 	fmt.Println(isValid("{{{{123}}}}"))
+	fmt.Println(isValid("()"))
 }
