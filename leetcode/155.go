@@ -17,16 +17,13 @@ func Constructor() MinStack {
 
 func (this *MinStack) Push(val int) {
 	this.stack = append(this.stack, val)
-	if len(this.minStack) == 0 || this.GetMin() > val {
-		this.minStack = append(this.minStack, min(val, this.GetMin()))
+	if this.GetMin() >= val {
+		this.minStack = append(this.minStack, val)
 	}
 }
 
 func (this *MinStack) Pop() {
 	if len(this.stack) == 0 {
-		return
-	}
-	if len(this.minStack) == 0 {
 		return
 	}
 	if this.Top() == this.GetMin() {
@@ -51,13 +48,11 @@ func (this *MinStack) GetMin() int {
 
 func main() {
 	obj := Constructor()
-	obj.Push(5)
-	obj.Push(5)
-	obj.Push(6)
+	obj.Push(0)
 	obj.Push(1)
-	fmt.Println(obj.Top())
+	obj.Push(0)
 	fmt.Println(obj.GetMin())
 	obj.Pop()
-	fmt.Println(obj.Top())
 	fmt.Println(obj.GetMin())
+
 }
