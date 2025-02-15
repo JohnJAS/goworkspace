@@ -2,30 +2,18 @@ package main
 
 import "fmt"
 
-/**
- * Definition for singly-linked list.
- * type ListNode struct {
- *     Val int
- *     Next *ListNode
- * }
- */
-
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
 func reverseList(head *ListNode) *ListNode {
-	var pre *ListNode = nil
+	//定义空指针
+	var pre *ListNode
 	cur := head
 	for cur != nil {
-		tp := cur.Next
+		next := cur.Next
 		cur.Next = pre
+		//迭代下一轮
 		pre = cur
-		cur = tp
+		cur = next
 	}
-
-	//return is pre, not cur!
+	//注意cur是nil，返回的是pre
 	return pre
 }
 
