@@ -4,17 +4,6 @@ import (
 	"fmt"
 )
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
-
-var l111 = ListNode{3, nil}
-var l11 = ListNode{2, &l111}
-var l1 = ListNode{1, &l11}
-
-var l2 = ListNode{9, nil}
-
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	//进位
 	flag := 0
