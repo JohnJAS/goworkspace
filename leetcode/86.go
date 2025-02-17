@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type ListNode struct {
 	Val  int
@@ -28,23 +30,36 @@ func (l *ListNode) print() {
 	fmt.Println() // To end the print with a new line
 }
 
-func hasCycle(head *ListNode) bool {
-	fast, slow := head, head
-	for fast != nil {
-		if fast.Next == nil {
-			return false
+func partition(head *ListNode, x int) *ListNode {
+	smallHead := &ListNode{}
+	largeHead := &ListNode{}
+
+	smallCur := smallHead
+	largeCur := largeHead
+	for head != nil {
+		if head.Val >= x {
+			largeCur.Next = head
+			largeCur = largeCur.Next
+		} else {
+			smallCur.Next = head
+			smallCur = smallCur.Next
 		}
-		fast = fast.Next.Next
-		slow = slow.Next
-		if fast == slow {
-			return true
-		}
+		head = head.Next
 	}
-	return false
+
+	largeCur.Next = nil
+	smallCur.Next = largeHead.Next
+
+	return smallHead.Next
 }
 
 func main() {
-	list := &ListNode{Val: 1}
-	list.add(2).add(3).add(4).add(5)
-	fmt.Println(hasCycle(list))
+	list1 := &ListNode{1, nil}
+	list1.add(4).add(3).add(2).add(5).add(2)
+
+	list1.print()
+	fmt.Println(partition(list1, 3))
+
+	list1.print()
+
 }

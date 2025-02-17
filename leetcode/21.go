@@ -9,11 +9,25 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func (l *ListNode) add(val int) {
-	for l.Next != nil {
-		l = l.Next
+func (l *ListNode) add(val int) *ListNode {
+	if l == nil {
+		return &ListNode{Val: val}
 	}
-	l.Next = &ListNode{Val: val}
+	head := l
+	for head.Next != nil {
+		head = head.Next
+	}
+	head.Next = &ListNode{Val: val}
+	return l // 返回原头节点，确保链表完整性
+}
+
+func (l *ListNode) print() {
+	cur := l
+	for cur != nil { // Use l != nil instead of l.Next != nil
+		fmt.Printf("%d->", cur.Val)
+		cur = cur.Next // Move to the next node
+	}
+	fmt.Println() // To end the print with a new line
 }
 
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {
