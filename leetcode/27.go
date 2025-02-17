@@ -16,7 +16,7 @@ func removeElement(nums []int, val int) int {
 }
 
 func main() {
-	var nums = []int{}
+	var nums = []int{2, 3, 1, 2, 1}
 	fmt.Println(removeElement(nums, 1))
 	fmt.Println(nums)
 }

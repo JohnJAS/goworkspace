@@ -1,9 +1,5 @@
 package main
 
-import (
-	"fmt"
-)
-
 func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	//进位
 	flag := 0
@@ -39,8 +35,4 @@ func addTwoNumbers(l1 *ListNode, l2 *ListNode) *ListNode {
 	}
 
 	return head.Next
-}
-
-func main() {
-	fmt.Println(addTwoNumbers(&l1, &l2))
 }
