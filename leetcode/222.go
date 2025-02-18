@@ -46,7 +46,7 @@ func getHeight(root *TreeNode) (h int) {
 	if root == nil {
 		return h
 	}
-	for root.Left != nil {
+	for root != nil {
 		h++
 		root = root.Left
 	}
