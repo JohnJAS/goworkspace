@@ -8,9 +8,13 @@ type TreeNode struct {
 	Right *TreeNode
 }
 
-var l1 TreeNode = TreeNode{1, nil, nil}
-var l2 TreeNode = TreeNode{2, nil, nil}
-var root TreeNode = TreeNode{3, &l1, &l2}
+func (t *TreeNode) addLeft(val int) {
+	t.Left = &TreeNode{Val: val}
+}
+
+func (t *TreeNode) addRight(val int) {
+	t.Right = &TreeNode{Val: val}
+}
 
 func maxDepth(root *TreeNode) int {
 	if root == nil {
@@ -20,5 +24,11 @@ func maxDepth(root *TreeNode) int {
 }
 
 func main() {
-	fmt.Println(maxDepth(&root))
+	root := &TreeNode{Val: 5}
+	root.addLeft(4)
+	root.Left.addLeft(11)
+	root.Left.Left.addLeft(7)
+	root.Left.Left.addRight(2)
+
+	fmt.Println(maxDepth(root))
 }
