@@ -58,6 +58,8 @@ func (this *LRUCache) Put(key int, value int) {
 		node = initDLinkedNode(key, value)
 		//add node before head (注意dummy head永远为head)
 		this.addToHead(node)
+		//update cache
+		this.cache[key] = node
 		//if over capacity, delete tail
 		if this.size > this.capacity {
 			//*************remove from map***************
