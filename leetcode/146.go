@@ -61,7 +61,7 @@ func (this *LRUCache) Put(key int, value int) {
 		//update cache
 		this.cache[key] = node
 		//if over capacity, delete tail
-		if this.size > this.capacity {
+		if this.size >= this.capacity {
 			//*************remove from map***************
 			node = this.tail.pre
 			this.removeNode(node)
