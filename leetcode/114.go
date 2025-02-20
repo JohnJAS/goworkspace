@@ -1,36 +1,60 @@
 package main
 
-/**
- * Definition for a binary tree node.
- * type TreeNode struct {
- *     Val int
- *     Left *TreeNode
- *     Right *TreeNode
- * }
- */
+import "fmt"
+
+type TreeNode struct {
+	Val   int
+	Left  *TreeNode
+	Right *TreeNode
+}
+
+func (t *TreeNode) addLeft(val int) {
+	t.Left = &TreeNode{Val: val}
+}
+
+func (t *TreeNode) addRight(val int) {
+	t.Right = &TreeNode{Val: val}
+}
+
+// 先序遍历
+func print(node *TreeNode) {
+	if node == nil {
+		return
+	}
+	fmt.Printf(" %d ", node.Val)
+	print(node.Left)
+	print(node.Right)
+}
 
 func flatten(root *TreeNode) {
 	if root == nil {
 		return
 	}
-
-	// 扁平化左右子树
 	flatten(root.Left)
 	flatten(root.Right)
 
-	// 备份右子树
-	right := root.Right
-
-	// 将左子树接到右子树位置
+	temp := root.Right
 	root.Right = root.Left
 	root.Left = nil
-
-	// 找到当前右子树的末尾节点
-	current := root
-	for current.Right != nil {
-		current = current.Right
+	cur := root
+	for cur.Right != nil {
+		cur = cur.Right
 	}
+	cur.Right = temp
 
-	// 将原来的右子树接到末尾
-	current.Right = right
+}
+
+func main() {
+	root := &TreeNode{Val: 1}
+	root.addLeft(2)
+	root.Left.addLeft(3)
+	root.Left.addRight(4)
+	root.addRight(5)
+	root.Right.addRight(6)
+	print(root)
+	fmt.Println()
+
+	flatten(root)
+
+	print(root)
 }
