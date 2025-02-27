@@ -12,16 +12,20 @@ func findAnagrams(s string, p string) []int {
 	}
 
 	var sCount, pCount [26]int
+	// 初始化 pCount 和 sCount
 	for i := 0; i < pLen; i++ {
-		sCount[p[i]-'a']++ //固化p的pattern数组
-		pCount[s[i]-'a']++ //初始化s的带比较数组
+		sCount[s[i]-'a']++ // 初始化 sCount，增加窗口內的字符數
+		pCount[p[i]-'a']++ // 固定 p 的字符計數
 	}
+
+	// 檢查第一次窗口是否匹配
 	if sCount == pCount {
 		result = append(result, 0)
 	}
 
+	// 滑動窗口
 	for i := 0; i < sLen-pLen; i++ {
-		sCount[p[i]-'a']--      //滑动窗口左位置
+		sCount[s[i]-'a']--      //滑动窗口左位置
 		sCount[s[i+pLen]-'a']++ //滑动窗口右位置
 		if sCount == pCount {
 			result = append(result, i+1)
@@ -31,8 +35,8 @@ func findAnagrams(s string, p string) []int {
 }
 
 func main() {
-	s := "cbaebabacd"
-	p := "abc"
+	s := "baa"
+	p := "aa"
 
 	fmt.Println(findAnagrams(s, p))
 }
