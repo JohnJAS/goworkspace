@@ -6,14 +6,19 @@ package main
 import "fmt"
 
 func twoSum(nums []int, target int) []int {
+	//创建map, 存target-cur的值，向后搜索，如果有就说明找到了，因为只有唯一解，直接返回即可
 	m := make(map[int]int)
 	for index, v := range nums {
-		if _, ok := m[target-v]; ok {
-			return []int{m[target-v], index}
+		find := target - v
+		if _, ok := m[find]; ok {
+			return []int{m[find], index}
+		} else {
+			m[v] = index
 		}
-		m[v] = index
 	}
-	return []int{}
+
+	return nil
+
 }
 
 func main() {
