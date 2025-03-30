@@ -3,24 +3,19 @@ package main
 import "fmt"
 
 func maxArea(height []int) int {
-	var maxA int
-
-	left, right := 0, len(height)-1
-
-	for left < right {
-		area := 0
-		if height[left] < height[right] {
-			area = (right - left) * height[left]
-			left++
+	//双指针，双指针，左右逼近，原理，面积是由低的那一边决定的，所以移动低的那一边，才有可能找到更大的面积
+	maxA := 0
+	leftP, rightP := 0, len(height)-1
+	for leftP < rightP {
+		if height[leftP] < height[rightP] {
+			maxA = max(maxA, height[leftP]*(rightP-leftP))
+			//面积是由低的那一边决定的，所以移动低的那一边，才有可能找到更大的面积
+			leftP++
 		} else {
-			area = (right - left) * height[right]
-			right--
-		}
-		if maxA < area {
-			maxA = area
+			maxA = max(maxA, height[rightP]*(rightP-leftP))
+			rightP--
 		}
 	}
-
 	return maxA
 }
 
