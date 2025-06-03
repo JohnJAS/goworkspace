@@ -23,8 +23,9 @@ func orangesRotting(grid [][]int) int {
 
 	for len(queue) != 0 {
 		length := len(queue)
-		for length > 0 {
-			curR, curC := queue[length-1][0], queue[length-1][1]
+		for i := 0; i < length; i++ {
+			//队列，先进先出
+			curR, curC := queue[0][0], queue[0][1]
 			queue = queue[1:]
 			for _, v := range direction {
 				newR, newC := curR+v[0], curC+v[1]
@@ -33,10 +34,18 @@ func orangesRotting(grid [][]int) int {
 					queue = append(queue, [2]int{newR, newC})
 				}
 			}
-			length--
 		}
 		if len(queue) != 0 {
 			ans++
+		}
+	}
+
+	// Check for remaining fresh oranges
+	for r := 0; r < R; r++ {
+		for c := 0; c < C; c++ {
+			if grid[r][c] == 1 {
+				return -1
+			}
 		}
 	}
 
