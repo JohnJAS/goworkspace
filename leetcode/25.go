@@ -35,7 +35,6 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 
 	for cur != nil {
 		tail := pre
-		// 修复1：使用 k 而不是硬编码的 2
 		for i := 0; i < k; i++ {
 			tail = tail.Next
 			if tail == nil {
@@ -44,7 +43,6 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 		}
 
 		next := tail.Next
-		// 调用修复后的 reverse 函数
 		cur, tail = reverse(cur, tail)
 
 		// 重新连接链表
@@ -59,11 +57,10 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 	return dummy.Next
 }
 
-// 修复2：循环条件使用 tail.Next 而不是 nil
 func reverse(head, tail *ListNode) (*ListNode, *ListNode) {
 	pre := tail.Next
 	cur := head
-	for cur != tail.Next {
+	for pre != tail {
 		next := cur.Next
 		cur.Next = pre
 		pre = cur
