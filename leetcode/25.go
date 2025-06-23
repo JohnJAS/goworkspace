@@ -60,7 +60,7 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 }
 
 func reverse(head, tail *ListNode) (*ListNode, *ListNode) {
-	pre := tail.Next  // pre 初始指向尾节点之后的位置（可能是 nil）
+	pre := tail.Next  // pre 初始指向尾节点之后的位置，这个算法就是在pre节点前插入cur节点，pre不断更新，指向正在更新的反转链表的头部
 	cur := head       // cur 从 head 开始遍历到 tail
 	for pre != tail { // 当 pre 走到 tail 才结束
 		next := cur.Next
