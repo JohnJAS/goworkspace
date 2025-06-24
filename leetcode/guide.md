@@ -35,7 +35,7 @@
     *   **指针操作：**
         *   [`反转链表`](./206.go) ([力扣 206](https://leetcode.cn/problems/reverse-linked-list/)) - 迭代/递归。
         *   [`反转链表 II`](./92.go) ([力扣 92](https://leetcode.cn/problems/reverse-linked-list-ii/)) - 反转指定区间。分解子问题，反转链表的逻辑是一样的。
-        *   `K 个一组翻转链表` (力扣 25) - 经典难题。
+        *   [`K 个一组翻转链表`](./25.go) ([力扣 25](https://leetcode.cn/problems/reverse-nodes-in-k-group/description/)) - 经典难题。k个一组遍历的时候，利用tail遍历，cur作为每组的头节点
         *   `合并两个有序链表` (力扣 21)
         *   `合并 K 个升序链表` (力扣 23) - 优先队列(堆)/分治。
         *   `删除链表的倒数第 N 个结点` (力扣 19) - 快慢指针。

@@ -29,10 +29,9 @@ func (l *ListNode) print() {
 }
 
 func reverseKGroup(head *ListNode, k int) *ListNode {
-
-	dummy := &ListNode{Next: head}
+	var dummy = &ListNode{Next: head}
 	pre := dummy
-	cur := head
+	cur := pre.Next
 
 	for cur != nil {
 		tail := pre
@@ -42,21 +41,22 @@ func reverseKGroup(head *ListNode, k int) *ListNode {
 				return dummy.Next
 			}
 		}
-
 		next := tail.Next
-		cur, tail = reverse2(cur, tail)
+
+		cur, tail = reverse(cur, tail)
 
 		pre.Next = cur
 		tail.Next = next
 
 		pre = tail
-		cur = tail.Next
+		cur = next
 
 	}
 	return dummy.Next
 }
 
-func reverse2(head, tail *ListNode) (*ListNode, *ListNode) {
+func reverse(head, tail *ListNode) (*ListNode, *ListNode) {
+
 	pre := tail.Next
 	cur := head
 
@@ -68,9 +68,9 @@ func reverse2(head, tail *ListNode) (*ListNode, *ListNode) {
 		cur = next
 
 	}
-
 	return tail, head
 }
+
 func main() {
 	list1 := &ListNode{1, nil}
 	list1.add(2)
