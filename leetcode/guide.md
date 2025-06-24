@@ -10,8 +10,8 @@
     *   **双指针：**
         *   [`两数之和`](./1.go) ([力扣 1](https://leetcode.cn/problems/two-sum/?envType=study-plan-v2&envId=top-100-liked)) - 哈希表解法更常见，但双指针需排序。
         *   [`三数之和`](./15.go) ([力扣 15](https://leetcode.cn/problems/3sum/description/)) - 排序 + 双指针(*注意去重*)。
-        *   `最接近的三数之和` (力扣 16)
-        *   `盛最多水的容器` (力扣 11) - 经典对撞指针。
+        *   `最接近的三数之和` ([力扣 16](https://leetcode.cn/problems/3sum-closest/description/)) - 做法和三数之和一样
+        *   [`盛最多水的容器`](./11.go) ([力扣 11](https://leetcode.cn/problems/container-with-most-water/description/)) - 经典对撞指针。
         *   `删除有序数组中的重复项` (力扣 26) - 快慢指针。
         *   `移除元素` (力扣 27) - 快慢指针。
         *   `反转字符串` (力扣 344) - 对撞指针。
