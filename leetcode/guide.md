@@ -14,8 +14,8 @@
         *   [`盛最多水的容器`](./11.go) ([力扣 11](https://leetcode.cn/problems/container-with-most-water/description/)) - 经典对撞指针，总是矮的位置移动。
         *   [`删除有序数组中的重复项`](./26.go) ([力扣 26](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/)) - 快慢指针。
         *   [`移除元素`](./27.go) ([力扣 27](https://leetcode.cn/problems/remove-element/)) - 快慢指针(直接覆盖slow)和对撞指针都可以。
-        *   `反转字符串` (力扣 344) - 对撞指针。
-        *   `验证回文串` (力扣 125) - 对撞指针+字符处理。
+        *   [`反转字符串`](./344.go) ([力扣 344](https://leetcode.cn/problems/increasing-triplet-subsequence/)) - 对撞指针。
+        *   [`验证回文串`](./125.go) ([力扣 125](https://leetcode.cn/problems/valid-palindrome/)) - 对撞指针+字符处理。
     *   **滑动窗口：**
         *   `无重复字符的最长子串` (力扣 3) - 经典滑动窗口+哈希表。
         *   `最小覆盖子串` (力扣 76) - 较难，滑动窗口+哈希计数。
