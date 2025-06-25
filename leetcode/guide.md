@@ -12,7 +12,7 @@
         *   [`三数之和`](./15.go) ([力扣 15](https://leetcode.cn/problems/3sum/description/)) - 排序 + 双指针(*注意去重*)。
         *   `最接近的三数之和` ([力扣 16](https://leetcode.cn/problems/3sum-closest/description/)) - 做法和三数之和一样
         *   [`盛最多水的容器`](./11.go) ([力扣 11](https://leetcode.cn/problems/container-with-most-water/description/)) - 经典对撞指针，总是矮的位置移动。
-        *   [`删除有序数组中的重复项`](./26.go) ([力扣 26](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/)) - 快慢指针。
+        *   [`删除有序数组中的重复项`](./26.go) ([力扣 26](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/)) - 快慢指针。（看一眼没想出来）
         *   [`移除元素`](./27.go) ([力扣 27](https://leetcode.cn/problems/remove-element/)) - 快慢指针(直接覆盖slow)和对撞指针都可以。
         *   [`反转字符串`](./344.go) ([力扣 344](https://leetcode.cn/problems/increasing-triplet-subsequence/)) - 对撞指针。
         *   [`验证回文串`](./125.go) ([力扣 125](https://leetcode.cn/problems/valid-palindrome/)) - 对撞指针+字符处理。
@@ -67,9 +67,9 @@
         *   `二叉搜索树迭代器` (力扣 173) - 非递归中序遍历栈。
 
 4.  **栈 & 队列：**
-    *   `有效的括号` (力扣 20) - **经典栈应用**。
+    *   [`有效的括号`](./20.go) ([力扣 20](https://leetcode.cn/problems/valid-parentheses/description/)) - **经典栈应用**。
     *   `最小栈` (力扣 155) - 辅助栈/栈元素存储额外信息。
-    *   `用栈实现队列` (力扣 232) / `用队列实现栈` (力扣 225) - 考察数据结构理解。
+    *   `用栈实现队列` (力扣 232) / `用队列实现栈` (力扣 225) - 考察数据结构理解。前者用双栈，后者是循环队列
     *   `柱状图中最大的矩形` (力扣 84) - 单调栈（难）。
     *   `滑动窗口最大值` (力扣 239) - 单调队列（难）。
 
