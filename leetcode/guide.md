@@ -17,8 +17,8 @@
         *   [`反转字符串`](./344.go) ([力扣 344](https://leetcode.cn/problems/increasing-triplet-subsequence/)) - 对撞指针。
         *   [`验证回文串`](./125.go) ([力扣 125](https://leetcode.cn/problems/valid-palindrome/)) - 对撞指针+字符处理。
     *   **滑动窗口：**
-        *   `无重复字符的最长子串` (力扣 3) - 经典滑动窗口+哈希表。
-        *   `最小覆盖子串` (力扣 76) - 较难，滑动窗口+哈希计数。
+        *   [`无重复字符的最长子串`](./3.go) ([力扣 3](https://leetcode.cn/problems/longest-substring-without-repeating-characters/description/)) - 经典滑动窗口+哈希表。
+        *   [`最小覆盖子串`](./567.go) ([力扣 76](https://leetcode.cn/problems/M1oyTv/description/)) - 较难，滑动窗口+哈希计数。
         *   `字符串的排列` (力扣 567) - 固定长度滑动窗口+哈希计数。
         *   `找到字符串中所有字母异位词` (力扣 438) - 类似上题。
         *   `长度最小的子数组` (力扣 209) - 可变窗口。

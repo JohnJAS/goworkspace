@@ -18,16 +18,16 @@ func (l *ListNode) add(val int) *ListNode {
 		head = head.Next
 	}
 	head.Next = &ListNode{Val: val}
-	return l // 返回原头节点，确保链表完整性
+	return l
 }
 
 func (l *ListNode) print() {
 	cur := l
-	for cur != nil { // Use l != nil instead of l.Next != nil
+	for cur != nil {
 		fmt.Printf("%d->", cur.Val)
-		cur = cur.Next // Move to the next node
+		cur = cur.Next
 	}
-	fmt.Println() // To end the print with a new line
+	fmt.Println()
 }
 
 func mergeTwoLists(list1 *ListNode, list2 *ListNode) *ListNode {

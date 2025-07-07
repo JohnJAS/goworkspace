@@ -1,0 +1,39 @@
+syntax = "proto3";
+
+package demo;
+
+option go_package = "github.com/user/demo/proto";
+
+// 定义服务
+service DemoService {
+  // 普通RPC
+  rpc SimpleRPC (SimpleRequest) returns (SimpleResponse);
+
+  // 服务端流式RPC
+  rpc ServerStreamRPC (StreamRequest) returns (stream StreamResponse);
+
+  // 客户端流式RPC
+  rpc ClientStreamRPC (stream StreamRequest) returns (StreamResponse);
+
+  // 双向流式RPC
+  rpc BidirectionalStreamRPC (stream StreamRequest) returns (stream StreamResponse);
+}
+
+// 请求消息
+message SimpleRequest {
+  string request_data = 1;
+}
+
+// 响应消息
+message SimpleResponse {
+  string response_data = 1;
+}
+
+// 流式请求/响应消息
+message StreamRequest {
+  string request_data = 1;
+}
+
+message StreamResponse {
+  string response_data = 1;
+}
