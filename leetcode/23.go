@@ -35,10 +35,8 @@ func (pq *PriorityQueue) Push(x interface{}) {
 
 // 只需要弹出最后一个元素，并返回塔
 func (pq *PriorityQueue) Pop() interface{} {
-	old := *pq
-	n := len(old)
-	item := old[n-1]
-	*pq = old[0 : n-1]
+	item := (*pq)[pq.Len()-1]
+	*pq = (*pq)[:pq.Len()-1]
 	return item
 }
 

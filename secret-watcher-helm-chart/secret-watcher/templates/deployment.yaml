@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "secret-watcher.fullname" . }}
+  namespace: {{ .Values.secret.namespace }}
+spec:
+  replicas: {{ .Values.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "secret-watcher.fullname" . }}
+  template:
+    metadata:
+      labels:
+        app: {{ include "secret-watcher.fullname" . }}
+        {{- toYaml .Values.podLabels | nindent 8 }}
+    spec:
+      serviceAccountName: {{ include "secret-watcher.fullname" . }}
+      containers:
+        - name: manager
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          command: ["/manager"]
+          args:
+            - --metrics-addr=:{{ .Values.metrics.port }}
+            {{- if .Values.leaderElection.enabled }}
+            - --enable-leader-election=true
+            {{- else }}
+            - --enable-leader-election=false
+            {{- end }}
+          ports:
+            - containerPort: {{ .Values.metrics.port }}
+              name: metrics
+          env:
+            - name: TARGET_SECRET_NAME
+              value: "{{ .Values.secret.name }}"
+            - name: TARGET_SECRET_NAMESPACE
+              value: "{{ .Values.secret.namespace }}"
+            - name: TARGET_POD_LABELS
+              value: "{{ toJson .Values.targetPodSelector }}"

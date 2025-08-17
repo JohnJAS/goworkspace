@@ -10,7 +10,7 @@
     *   **双指针：**
         *   [`两数之和`](./1.go) ([力扣 1](https://leetcode.cn/problems/two-sum/?envType=study-plan-v2&envId=top-100-liked)) - 哈希表解法更常见，但双指针需排序。
         *   [`三数之和`](./15.go) ([力扣 15](https://leetcode.cn/problems/3sum/description/)) - 排序 + 双指针(*注意去重*)。
-        *   `最接近的三数之和` ([力扣 16](https://leetcode.cn/problems/3sum-closest/description/)) - 做法和三数之和一样
+        *   [`最接近的三数之和`]([力扣 16](https://leetcode.cn/problems/3sum-closest/description/)) - 做法和三数之和一样
         *   [`盛最多水的容器`](./11.go) ([力扣 11](https://leetcode.cn/problems/container-with-most-water/description/)) - 经典对撞指针，总是矮的位置移动。
         *   [`删除有序数组中的重复项`](./26.go) ([力扣 26](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/description/)) - 快慢指针。（看一眼没想出来）
         *   [`移除元素`](./27.go) ([力扣 27](https://leetcode.cn/problems/remove-element/)) - 快慢指针(直接覆盖slow)和对撞指针都可以。
@@ -27,7 +27,7 @@
         *   `连续的子数组和` (力扣 523) - 前缀和 + 哈希表存余数。
         *   `寻找数组的中心下标` (力扣 724) - 前缀和思想。
     *   **模拟 & 矩阵：**
-        *   `螺旋矩阵` (力扣 54) - 模拟边界收缩。
+        *   [`螺旋矩阵`](./54) ([力扣 54](https://leetcode.cn/problems/spiral-matrix/)) - 模拟边界收缩。
         *   `旋转图像` (力扣 48) - 分层旋转/数学技巧。
         *   `有效的数独` (力扣 36) - 哈希表检查行、列、块。
 
@@ -42,7 +42,7 @@
         *   [`相交链表`](./160.go) (力扣 160) - 双指针浪漫相遇法。
         *   [`环形链表`](./141.go) (力扣 141) - 快慢指针判环。
         *   [`环形链表 II`](./142.go) (力扣 142) - 快慢指针找环入口。
-        *   `删除排序链表中的重复元素` (力扣 83) / `II` (力扣 82) - 指针操作。
+        *   [`删除排序链表中的重复元素`](./83.go) ([力扣 83](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/description/)) / [`II`](./82.go) ([力扣 82](https://leetcode.cn/problems/remove-duplicates-from-sorted-list-ii/description/)) - 指针操作。
 
 3.  **树：**
     *   **二叉树的遍历 (递归 & 迭代)：**
