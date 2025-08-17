@@ -6,69 +6,81 @@ import (
 )
 
 type H2O struct {
-	hydrogenSem chan struct{} // 用于氢原子的信号量
-	oxygenSem   chan struct{} // 用于氧原子的信号量
-	wg          sync.WaitGroup
+	hQueue chan chan struct{} // Hydrogen 请求 channel
+	oQueue chan chan struct{} // Oxygen 请求 channel
 }
 
 func NewH2O() *H2O {
-	return &H2O{
-		hydrogenSem: make(chan struct{}, 2),
-		oxygenSem:   make(chan struct{}, 1),
+	h2o := &H2O{
+		hQueue: make(chan chan struct{}, 100),
+		oQueue: make(chan chan struct{}, 100),
 	}
+
+	// 组装 goroutine
+	go func() {
+		for {
+			// 等待 2 个 H 和 1 个 O
+			h1 := <-h2o.hQueue
+			h2 := <-h2o.hQueue
+			o := <-h2o.oQueue
+
+			// 同时释放信号
+			h1 <- struct{}{}
+			h2 <- struct{}{}
+			o <- struct{}{}
+		}
+	}()
+
+	return h2o
 }
 
-func (h2o *H2O) hydrogen(releaseHydrogen func()) {
-	h2o.hydrogenSem <- struct{}{} // 获取氢原子位置
-
-	// 等待氧原子就位
-	<-h2o.oxygenSem
-
-	releaseHydrogen()
-
-	h2o.wg.Done()
+func (h2o *H2O) Hydrogen(releaseHydrogen func()) {
+	signal := make(chan struct{})
+	h2o.hQueue <- signal // 请求加入
+	<-signal             // 等待组装 goroutine释放
+	releaseHydrogen()    // 打印 H
 }
 
-func (h2o *H2O) oxygen(releaseOxygen func()) {
-	h2o.oxygenSem <- struct{}{} // 获取氧原子位置
-
-	// 等待两个氢原子就位
-	<-h2o.hydrogenSem
-	<-h2o.hydrogenSem
-
-	releaseOxygen()
-
-	// 重置信号量，准备下一组
-	h2o.oxygenSem <- struct{}{}
-	h2o.wg.Done()
+func (h2o *H2O) Oxygen(releaseOxygen func()) {
+	signal := make(chan struct{})
+	h2o.oQueue <- signal // 请求加入
+	<-signal             // 等待组装 goroutine释放
+	releaseOxygen()      // 打印 O
 }
 
 func main() {
-	water := "HHHHHHOOO"
 	h2o := NewH2O()
+	output := make(chan string, 100)
+	var wg sync.WaitGroup
 
-	var result []byte
-	var mu sync.Mutex
+	releaseH := func() { output <- "H" }
+	releaseO := func() { output <- "O" }
 
-	for _, c := range water {
-		h2o.wg.Add(1)
+	input := "HOHOOOOOOOOHHHHOOHHHHHHHHHHOHHHHHHHHOHH"
+
+	for _, c := range input {
+		wg.Add(1)
 		switch c {
-		//一直是H的话，就会导致启动很多H进程，争夺O
 		case 'H':
-			go h2o.hydrogen(func() {
-				mu.Lock()
-				result = append(result, 'H')
-				mu.Unlock()
-			})
+			go func() {
+				defer wg.Done()
+				h2o.Hydrogen(releaseH)
+			}()
 		case 'O':
-			go h2o.oxygen(func() {
-				mu.Lock()
-				result = append(result, 'O')
-				mu.Unlock()
-			})
+			go func() {
+				defer wg.Done()
+				h2o.Oxygen(releaseO)
+			}()
 		}
 	}
 
-	h2o.wg.Wait()
-	fmt.Println(string(result))
+	go func() {
+		wg.Wait()
+		close(output)
+	}()
+
+	for v := range output {
+		fmt.Print(v)
+	}
+	fmt.Println()
 }
