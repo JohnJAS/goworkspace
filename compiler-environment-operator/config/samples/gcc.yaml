@@ -1,0 +1,16 @@
+apiVersion: compiler.example.com/v1
+kind: CompilerEnvironment
+metadata:
+  name: compiler-sample
+spec:
+  image: "gcc:11.3"
+  command: ["sleep"]
+  args: ["3600"]
+  storageRequest: "5Gi"
+  resources:
+    requests:
+      memory: "512Mi"
+      cpu: "250m"
+    limits:
+      memory: "1Gi"
+      cpu: "500m"
