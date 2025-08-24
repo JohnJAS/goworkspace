@@ -1,11 +1,45 @@
+---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
-  labels:
-    app.kubernetes.io/name: compiler-environment-operator
-    app.kubernetes.io/managed-by: kustomize
   name: manager-role
 rules:
-- apiGroups: [""]
-  resources: ["pods"]
-  verbs: ["get", "list", "watch"]
+- apiGroups:
+  - ""
+  resources:
+  - persistentvolumeclaims
+  - pods
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - compiler.example.com
+  resources:
+  - compilerenvironments
+  verbs:
+  - create
+  - delete
+  - get
+  - list
+  - patch
+  - update
+  - watch
+- apiGroups:
+  - compiler.example.com
+  resources:
+  - compilerenvironments/finalizers
+  verbs:
+  - update
+- apiGroups:
+  - compiler.example.com
+  resources:
+  - compilerenvironments/status
+  verbs:
+  - get
+  - patch
+  - update
