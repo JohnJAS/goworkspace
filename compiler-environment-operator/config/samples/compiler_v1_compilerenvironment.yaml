@@ -1,0 +1,9 @@
+apiVersion: compiler.example.com/v1
+kind: CompilerEnvironment
+metadata:
+  labels:
+    app.kubernetes.io/name: compiler-environment-operator
+    app.kubernetes.io/managed-by: kustomize
+  name: compilerenvironment-sample
+spec:
+  # TODO(user): Add fields here
